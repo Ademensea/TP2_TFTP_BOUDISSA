@@ -76,11 +76,49 @@ int main(int argc, char *argv[]) {
 
         }
 
-// Program execution success
+    n_bytes = BUF_SIZE_DATA ;
 
-        return 0;
+    while (n_bytes == BUF_SIZE_DATA) {
+        // First reception
+        if ((n_bytes = recvfrom(sock, buf, BUF_SIZE_DATA, 0, res->ai_addr, &res->ai_addrlen)) == -1) {
+            perror("receive DATA");
+            exit(EXIT_FAILURE);
+        }
 
+
+        write(STDOUT_FILENO, "En-tête : ", 10);
+        for (int i = 0; i < 4; i++) {
+            dprintf(STDOUT_FILENO, "%x", buf[i]);
+        }
+        write(STDOUT_FILENO, "\nContenu du fichier : ", 22);
+        for (int i = 4; i < n_bytes; i++) {
+            dprintf(STDOUT_FILENO, "%d", buf[i]);
+        }
+        write(STDOUT_FILENO, "\n", 1);
+
+        //Send ACK
+        buf[1] = 4;
+        write(STDOUT_FILENO, "Envoie ACK : ", 14);
+        for (int i = 0; i < 4; i++) {
+            dprintf(STDOUT_FILENO, "%d", buf[i]);
+        }
+        write(STDOUT_FILENO, "\n", 1);
     }
+
+// Send ACK to server
+
+    if (sendto(sock, buf, 4, 0, res->ai_addr, res->ai_addrlen) == -1) {
+        perror("Send ACK");
+        exit(EXIT_FAILURE);
+    }
+    write(STDOUT_FILENO, "ACK send\n", 9);
+
+// Close the socket
+    close(sock);
+    freeaddrinfo(res);
+
+// Finish
+    exit(EXIT_SUCCESS);
 
 
 
