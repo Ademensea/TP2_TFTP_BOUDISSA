@@ -55,10 +55,32 @@ int main(int argc, char *argv[]) {
         perror("socket");
         exit(EXIT_FAILURE);
 
-    }
+        // creation request RRQ
+
+char buf[BUF_SIZE_DATA];
+memset(buf, 0, BUF_SIZE_DATA);
+buf[1] = 1;
+strcpy(buf + 2, argv[2]);
+size_t padding = strlen(buf+2);
+strcpy(buf + 2 + padding + 1, "octet");
+size_t padding2 = strlen(buf + 3 + padding);
+
+
+        if (sendto(sock, buf, padding + padding2 + 4, 0, res->ai_addr, res->ai_addrlen) == -1) {
+
+            perror("send RRQ");
+
+            exit(EXIT_FAILURE);
+
+        }
 
 // Program execution success
-    return 0;
+
+        return 0;
+
+    }
+    }
+
+
 
 }
-
