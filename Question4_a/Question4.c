@@ -5,6 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <netinet/in.h>
+#define BUF_SIZE_DATA 516 // en-tete(4o) + data(512o max)
 
 int main(int argc, char *argv[]) {
 
@@ -79,7 +80,7 @@ size_t padding2 = strlen(buf + 3 + padding);
         return 0;
 
     }
-    }
+
 
 
 
