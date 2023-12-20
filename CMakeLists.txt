@@ -3,4 +3,4 @@ project(untitled C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(untitled Question3.c)
+add_executable(untitled Question3 Question1 Question2 Question4)
