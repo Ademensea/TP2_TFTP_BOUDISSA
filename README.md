@@ -80,6 +80,12 @@ Le but ici est d’envoyer un fichier sur le serveur. Le serveur créera alors u
 On commence donc par faire une requête d’écriture de paquet au serveur (WRQ).
 La seule différence par rapport à la question  4.a est le code opératoire qui passe de 1 à 2. 
 
+Pour l' Envoie d’un fichier constitué d’un seul paquet de données (DAT) et de la réception de son acquittement (ACK)
+On ouvre le fichier en lecture seule afin de pouvoir lire son contenu.
+Pour cela on utilise  la fonction open() pour l’ouverture et la fonction read() pour le lire. 
+On alloue à la variable du contenu de ce fichier une taille de 512 octets afin de garder les 4 octets réservés à l’opcode
+
+
 
 
 
