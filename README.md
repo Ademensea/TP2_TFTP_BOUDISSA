@@ -21,5 +21,7 @@ Si une erreur survient, le programme affiche un message d'erreur.
 
 4/ Question 4 a) : Construction d’une requête en lecture (RRQ) correctement formée, et envoie au serve
 
-On se base sur la construction d’une requête en lecture 
+On se base sur la construction d’une requête en lecture de ce type 
+
+
 ![Capture](https://github.com/Ademensea/TP2_TFTP_BOUDISSA/assets/152478943/b8766f4b-7108-4fb5-82a5-8cfb50c6a028)
